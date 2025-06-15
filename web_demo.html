@@ -7,7 +7,7 @@
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #aeefe3, #a2e2fd);
+      background: linear-gradient(to right, #d2f7f0, #bbe5f7);
       color: #333;
       text-align: center;
       padding: 50px;
@@ -52,33 +52,34 @@
     ];
   
     let availableMessages = [...messages];
-    let lastMessage = null;  // 记录上一条消息
+    let lastMessage = null;
   
     function showMessage() {
+      // 如果所有消息都用完了，就重新洗牌
       if (availableMessages.length === 0) {
         availableMessages = [...messages];
       }
   
       let selected;
       let i;
+      let tries = 0;
   
-      // 至少两条不同才做这个检查，否则死循环
-      if (availableMessages.length > 1) {
-        do {
-          i = Math.floor(Math.random() * availableMessages.length);
-          selected = availableMessages[i];
-        } while (selected === lastMessage);  // 重抽直到不同
-      } else {
-        // 只有一条时直接用
-        i = 0;
-        selected = availableMessages[0];
-      }
+      // 尝试找到一个与上一次不同的消息，避免死循环最多尝试10次
+      do {
+        i = Math.floor(Math.random() * availableMessages.length);
+        selected = availableMessages[i];
+        tries++;
+      } while (selected === lastMessage && tries < 10);
   
+      // 更新页面内容
       document.getElementById("message").textContent = selected;
       lastMessage = selected;
-      availableMessages.splice(i, 1);  // 删除已显示的，避免同轮重复
+  
+      // 移除这条消息
+      availableMessages.splice(i, 1);
     }
   </script>
+  
   
 
 </body>
