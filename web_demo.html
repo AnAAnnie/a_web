@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>点我一下，惊喜就来！</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #74ebd5, #acb6e5);
+      color: #333;
+      text-align: center;
+      padding: 50px;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+    #message {
+      margin: 20px auto;
+      font-size: 1.5em;
+      height: 80px;
+    }
+    button {
+      padding: 15px 30px;
+      font-size: 1em;
+      border: none;
+      border-radius: 8px;
+      background-color: #ff8c00;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #ff5e00;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎁 点击按钮，获取今日神秘彩蛋</h1>
+
+  <div id="message">（还没有彩蛋）</div>
+
+  <button onclick="showMessage()">点我！</button>
+
+  <script>
+    const messages = [
+      "你今天的运气值：✨ +999",
+      "小猫偷偷祝你幸福喵 🐱",
+      "你明天会遇到一个转机，记得微笑 😄",
+      "这个网页，其实藏着宇宙的秘密 🌀",
+      "今天宜早睡，梦里有糖 🍬",
+      "去告诉朋友你发现了一个秘密按钮！🕵️‍♀️",
+      "你是个特别有趣的人，不要怀疑 ❤️",
+      "输入 '人生赢家' 并点击 → 获得称号 👑"
+    ];
+
+    function showMessage() {
+      const i = Math.floor(Math.random() * messages.length);
+      document.getElementById("message").textContent = messages[i];
+    }
+  </script>
+
+</body>
+</html>
