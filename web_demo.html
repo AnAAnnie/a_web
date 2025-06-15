@@ -51,11 +51,26 @@
       "get out"
     ];
 
-    function showMessage() {
-      const i = Math.floor(Math.random() * messages.length);
-      document.getElementById("message").textContent = messages[i];
-    }
-  </script>
+   // 用来记录当前还没显示过的消息
+  let availableMessages = [...messages];
+
+function showMessage() {
+  // 如果所有消息都显示过了，重新洗牌
+  if (availableMessages.length === 0) {
+    availableMessages = [...messages];
+  }
+
+  // 随机抽一个索引
+  const i = Math.floor(Math.random() * availableMessages.length);
+  const selected = availableMessages[i];
+
+  // 显示消息
+  document.getElementById("message").textContent = selected;
+
+  // 删除这条消息，避免重复
+  availableMessages.splice(i, 1);
+}
+</script>
 
 </body>
 </html>
